@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "document-processing"
+version = "0.1.0"
+description = "Page-level multimodal PDF processing with Deep Agents"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "deepagents==0.7.9",
+    "fastapi==0.141.1",
+    "httpx==0.28.1",
+    "langchain-openai==1.6.0",
+    "openai==3.3.1",
+    "pillow==12.3.0",
+    "pydantic==2.13.4",
+    "pypdfium2==5.13.0",
+    "python-multipart==0.0.32",
+    "uvicorn==0.52.4",
+]
+
+[project.scripts]
+document-processing = "document_processing.__main__:main"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19,<2",
+    "pytest>=9,<10",
+    "pytest-cov>=7,<8",
+    "ruff>=0.15,<0.16",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/document_processing"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "SIM", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--strict-config",
+    "--strict-markers",
+    "--cov=document_processing",
+    "--cov-branch",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["document_processing"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]
