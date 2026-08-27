@@ -13,5 +13,5 @@
 - Request: Initialize Git version control and publish the completed project to `https://github.com/arjungowdal4601/vectorless_rag.git`.
 - Acceptance criteria: The verified project is committed on `main`, the GitHub repository is configured as `origin`, and the branch is pushed with upstream tracking.
 - Constraints: Preserve any existing remote history and do not force-push.
-- Status: in-progress
+- Status: completed
 - References: Changelog — 2026-08-27
